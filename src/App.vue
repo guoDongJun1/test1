@@ -1,8 +1,9 @@
 <template>
   <div>
+    <router-view/>
     <Tabbar></Tabbar>
   </div>
-  <router-view/>
+
 </template>
 
 <script>
