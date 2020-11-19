@@ -23,3 +23,9 @@ export function getPagingData(name,num) {
     url:'/home/homedata?type='+name+'&page='+num
   })
 }
+
+export function getGoodsClass(num) {
+  return request({
+    url:'/home/subcategory?type=subcategory&page='+num
+  })
+}

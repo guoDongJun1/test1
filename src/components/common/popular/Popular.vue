@@ -1,41 +1,46 @@
 <template>
     <div class="pop-box">
-      <div class="pop-box1">
-        <div v-for="item in popImg">
-          <div class="imaDiv">
-            <img :src="item.ima" alt="">
-          </div>
-          <a href="javascript:;">{{item.texts}}</a>
-        </div>
-      </div>
-      <PagingBut></PagingBut>
+<!--      调用显示商品图的组件-->
+      <HomeGoods :goods-arr="popImg"></HomeGoods>
+      <PagingBut @itme-click="popclick" :pagename="popname"></PagingBut>
     </div>
 </template>
 
 <script>
-  import {getHomeBigdata} from "../../../network/home";
-  import PagingBut from "@/components/common/pagingBut/PagingBut"
+  import {getPagingData} from "../../../network/home";
+  import HomeGoods from "../homeGoods/HomeGoods";
+  import PagingBut from "@/components/common/pagingBut/PagingBut";
 
   export default {
         name: "Popular",
     data(){
           return{
-            popImg:[]
+            popImg:[],
+            popname:'pop'
           }
     },
     components:{
+      HomeGoods,
       PagingBut
     },
+    methods:{
+      popclick(item){
+        this.popImg.splice(0,this.popImg.length,...item)
+        document.body.scrollTop=0
+        document.documentElement.scrollTop=0
+        // console.log(item)
+      }
+    },
     created() {
-      getHomeBigdata().then(res=>{
+
+      getPagingData('pop',1).then(res=>{
         for (let i=0;i<res.data.list.length;i++){
           let myArr={}
-          myArr.ima=res.data.list[i].show.img
-          myArr.texts=res.data.list[i].title
+          myArr.img=res.data.list[i].show.img
+          myArr.title=res.data.list[i].title
           this.popImg.push(myArr)
         }
-        // console.log(this.popImg[0])
-          })
+      })
     }
   }
 </script>
@@ -45,29 +50,5 @@
     width: 100%;
     margin-top: 1vh;
     margin-bottom: 10vh;
-  }
-  .pop-box1{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  .pop-box1>div{
-    width: 40vw;
-  }
-  .pop-box1 img{
-    width: 100%;
-  }
-  .imaDiv{
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  .pop-box1 a{
-    display: inline-block;
-    width: 100%;
-    font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 </style>

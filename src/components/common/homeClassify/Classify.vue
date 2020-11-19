@@ -12,13 +12,10 @@
 </template>
 
 <script>
-  import ClassifyItem from './Classify-item'
+
 
     export default {
-        name: "Classify",
-      components:{
-        ClassifyItem
-      }
+        name: "Classify"
     }
 </script>
 

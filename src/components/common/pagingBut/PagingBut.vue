@@ -12,20 +12,26 @@
   export default {
         name: "PagingBut",
     data(){
-          return{
-            pagData:[]
+          return{}
+    },
+    props:{
+          pagename:{
+            type:String,
+            default:"pop"
           }
     },
       methods:{
           getMyData(index){
-            getPagingData('new',index).then(res=>{
+            let pagData=[]
+            getPagingData(this.pagename,index).then(res=>{
               for (let i=0;i<res.data.list.length;i++){
                 let obj={}
                 obj.img=res.data.list[i].show.img
                 obj.title=res.data.list[i].title
-                this.pagData.push(obj)
+                pagData.push(obj)
               }
-              // console.log(res.data.list[0].show.img)
+              // console.log(pagData)
+              this.$emit('itme-click',pagData)
             })
 
           }

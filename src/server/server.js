@@ -52,6 +52,16 @@ app.get('/home/category',function (req,res) {
   })
 })
 
+app.get('/home/subcategory',function (req,res) {
+  const path=`./data/categorydata/${req.query.type}${req.query.page}.json`
+  fs.readFile(path,function (err,data) {
+    if (err){
+      return res.send('err')
+    }
+    res.send(JSON.parse(data))
+  })
+})
+
 app.listen(8000,function () {
   console.log("8000...")
 })
