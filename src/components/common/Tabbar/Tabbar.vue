@@ -1,6 +1,5 @@
 <template>
     <div id="tabbar">
-<!--        <slot></slot>-->
         <TabBarItem path="/home" active-color="red">
             <template v-slot:slot-img>
                 <img src="@/assets/img/tabbar/Home.svg" alt="">

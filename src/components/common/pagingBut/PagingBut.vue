@@ -28,10 +28,11 @@
                 let obj={}
                 obj.img=res.data.list[i].show.img
                 obj.title=res.data.list[i].title
+                obj.shopId=res.data.list[i].shopId
                 pagData.push(obj)
               }
               // console.log(pagData)
-              this.$emit('itme-click',pagData)
+              this.$emit('itme-click',pagData,index)
             })
 
           }

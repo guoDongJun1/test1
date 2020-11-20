@@ -1,22 +1,28 @@
 <template>
   <div class="goods-box">
     <div v-for="item in goodsArr">
-      <div class="imaDiv">
-        <img :src="item.img" alt="">
-      </div>
-      <a href="javascript:;">{{item.title}}</a>
+      <router-link :to="'/commodity/'+item.shopId+'/'+goodsnum">
+        <div class="imaDiv">
+          <img :src="item.img" alt="">
+        </div>
+        <a href="javascript:;">{{item.title}}</a>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
     export default {
-        name: "HomeGoods",
+      name: "HomeGoods",
       props:{
-          goodsArr:{
-            type:Array,
-            default: ()=>[]
-          }
+        goodsArr:{
+          type:Array,
+          default: ()=>[]
+        },
+        goodsnum:{
+          type: Number,
+          default:1
+        }
       }
     }
 </script>

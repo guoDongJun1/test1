@@ -1,6 +1,6 @@
 <template>
   <div class="selected-box">
-    <HomeGoods :goods-arr="selectedArr"></HomeGoods>
+    <HomeGoods :goods-arr="selectedArr" :goodsnum="seleindex"></HomeGoods>
     <PagingBut @itme-click="selectedclick" :pagename="selectedname"></PagingBut>
   </div>
 </template>
@@ -15,7 +15,8 @@
       data(){
           return{
             selectedArr:[],
-            selectedname:'sell'
+            selectedname:'sell',
+            seleindex:1
           }
       },
       components:{
@@ -28,13 +29,15 @@
             let myArr={}
             myArr.img=res.data.list[i].show.img
             myArr.title=res.data.list[i].title
+            myArr.shopId=res.data.list[i].shopId
             this.selectedArr.push(myArr)
           }
         })
       },
       methods:{
-        selectedclick(item){
+        selectedclick(item,index){
           this.selectedArr.splice(0,this.selectedArr.length,...item)
+          this.seleindex=index
           document.body.scrollTop=0
           document.documentElement.scrollTop=0
         }

@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container swi-box">
     <div class="swiper-wrapper box1">
       <div class="swiper-slide box1">
         <img :src="myimg[0]" alt="">
@@ -36,6 +36,9 @@
 </script>
 
 <style scoped>
+  .swi-box{
+    margin-top: 44px;
+  }
   .swiper-container{
     width: 100%;
     height: 200px;

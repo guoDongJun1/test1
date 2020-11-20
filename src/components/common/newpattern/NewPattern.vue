@@ -1,6 +1,6 @@
 <template>
   <div class="new-box">
-    <HomeGoods :goods-arr="newArr"></HomeGoods>
+    <HomeGoods :goods-arr="newArr" :goodsnum="newindex"></HomeGoods>
     <PagingBut @itme-click="newclick" :pagename="newname"></PagingBut>
   </div>
 </template>
@@ -15,7 +15,8 @@
       data(){
           return{
             newArr:[],
-            newname:'new'
+            newname:'new',
+            newindex:1
           }
       },
       components:{
@@ -28,13 +29,15 @@
             let myArr={}
             myArr.img=res.data.list[i].show.img
             myArr.title=res.data.list[i].title
+            myArr.shopId=res.data.list[i].shopId
             this.newArr.push(myArr)
           }
         })
       },
       methods:{
-        newclick(item){
+        newclick(item,index){
           this.newArr.splice(0,this.newArr.length,...item)
+          this.newindex=index
           document.body.scrollTop=0
           document.documentElement.scrollTop=0
           // console.log(item)

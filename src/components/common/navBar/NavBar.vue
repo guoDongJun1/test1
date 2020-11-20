@@ -7,7 +7,7 @@
         <slot name="center"></slot>
       </div>
       <div class="right">
-        <slot class="right"></slot>
+        <slot name="right"></slot>
       </div>
     </div>
 </template>
@@ -20,9 +20,13 @@
 
 <style scoped>
   .nav-bar{
+    width: 100%;
     display: flex;
     line-height: 44px;
     /*background: lightblue;*/
+    position: fixed;
+    top:0px;
+    z-index: 2;
   }
   .left,
   .right{

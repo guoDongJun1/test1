@@ -1,33 +1,34 @@
 <template>
-    <div  @click="itemClick">
-      <slot name="ify-name"></slot>
+    <div class="item-box">
+      <a href="javascript:;" :style="colorChange">
+        <slot name="itemText"></slot>
+      </a>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Classify-item",
+      name: "Classify-item",
       props:{
-          path:String,
-          ifyColor:{
-            type:String,
-            default:'deesSkyblue'
-          }
+        itemColor: {
+          type:String,
+          default: 'false'
+        }
       },
       computed:{
-          myfun(){
-            return {color:this.ifyColor}
+        colorChange(){
+          if(this.itemColor=='true'){
+            return {color:'#ff8198',borderBottom:'1px solid #ff8198'}
+          }else {
+            return {color:'#666'}
           }
-      },
-      methods:{
-        itemClick(){
-          console.log("这是path："+this.path)
-          this.$router.push(this.path)
         }
       }
     }
 </script>
 
 <style scoped>
-
+.item-box>a{
+  display: inline-block;
+}
 </style>

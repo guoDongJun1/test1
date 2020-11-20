@@ -25,14 +25,22 @@
       GoodsClass
     },
     created() {
-          getCategoryMenu().then(res=>{
-            for (let i=0;i<res.data.category.list.length;i++){
-              let myArr={}
-              myArr.maitKey=res.data.category.list[i].maitKey
-              myArr.title=res.data.category.list[i].title
-              this.mytitle.push(myArr)
-            }
-          })
+      getCategoryMenu().then(res=>{
+        for (let i=0;i<res.data.category.list.length;i++){
+          let myArr={}
+          myArr.maitKey=res.data.category.list[i].maitKey
+          myArr.title=res.data.category.list[i].title
+          this.mytitle.push(myArr)
+        }
+      })
+      getGoodsClass(3627).then(res=>{
+        for (let i=0;i<res.data.list.length;i++){
+          let myArr={}
+          myArr.image=res.data.list[i].image
+          myArr.title=res.data.list[i].title
+          this.maitKey.push(myArr)
+        }
+      })
     },
     methods:{
       // 点击获取商品分类图
@@ -55,6 +63,7 @@
 <style scoped>
 .me-box{
   width: 100%;
+  margin-top: 44px;
   margin-bottom: 10vh;
   display: flex;
   justify-content: flex-start;

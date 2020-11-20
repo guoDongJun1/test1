@@ -1,7 +1,7 @@
 <template>
     <div class="pop-box">
 <!--      调用显示商品图的组件-->
-      <HomeGoods :goods-arr="popImg"></HomeGoods>
+      <HomeGoods :goods-arr="popImg" :goodsnum="popindex"></HomeGoods>
       <PagingBut @itme-click="popclick" :pagename="popname"></PagingBut>
     </div>
 </template>
@@ -16,7 +16,8 @@
     data(){
           return{
             popImg:[],
-            popname:'pop'
+            popname:'pop',
+            popindex:1
           }
     },
     components:{
@@ -24,8 +25,11 @@
       PagingBut
     },
     methods:{
-      popclick(item){
+          // 通过分页按钮把获取的数据传回来
+      popclick(item,index){
         this.popImg.splice(0,this.popImg.length,...item)
+        this.popindex=index
+        // console.log(index)
         document.body.scrollTop=0
         document.documentElement.scrollTop=0
         // console.log(item)
@@ -38,8 +42,10 @@
           let myArr={}
           myArr.img=res.data.list[i].show.img
           myArr.title=res.data.list[i].title
+          myArr.shopId=res.data.list[i].shopId
           this.popImg.push(myArr)
         }
+        // console.log(res.data.list[0].shopId)
       })
     }
   }

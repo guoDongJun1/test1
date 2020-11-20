@@ -3,6 +3,7 @@ const Category=()=>import('@/views/category/Category')
 const Home=()=>import('@/views/home/Home')
 const Profile=()=>import('@/views/profile/Profile')
 const ShopCart=()=>import('@/views/shopCart/ShopCart')
+const Commodity=()=>import('@/views/commodity/Commodity')
 const Popular=()=>import('@/components/common/popular/Popular')
 const NewPattern=()=>import('@/components/common/newpattern/NewPattern')
 const Selected=()=>import('@/components/common/selected/Selected')
@@ -32,7 +33,12 @@ const routes = [
   },
   {path:'/category',component:Category},
   {path:'/profile',component:Profile},
-  {path:'/shopCart',component:ShopCart}
+  {path:'/shopCart',component:ShopCart},
+  {
+    path:'/commodity/:shopId/:num',
+    name:'Commodity',
+    component:Commodity
+  }
 ]
 
 const router = createRouter({
